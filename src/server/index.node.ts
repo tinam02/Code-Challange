@@ -13,10 +13,14 @@ const db = new Tingodb("./db", {});
 const orderCollection = db.collection("orders");
 
 /** Setup Express */
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
 
+//GET all
 app.get("/orders/", (req: any, result: any) => {
   orderCollection.find({ date: { $lt: Date.now() } }, (err: any, res: any) => {
     res.toArray((err2: any, res2: any) => {
@@ -24,6 +28,14 @@ app.get("/orders/", (req: any, result: any) => {
       return result.send(res2);
     });
   });
+});
+
+//GET 1
+app.get("/orders/:id", (req: any, result: any) => {
+  console.log("testing get by refnum");
+  orderCollection
+    .find({ refNumber: parseInt(req.params.id) })
+    .toArray((err: any, res: any) => result.send(res));
 });
 
 let index = 0;

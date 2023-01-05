@@ -47,9 +47,12 @@ var Tingodb = require("tingodb")({ memStore: true }).Db;
 var db = new Tingodb("./db", {});
 var orderCollection = db.collection("orders");
 /** Setup Express */
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.listen(port, function () {
     console.log("App listening on port ".concat(port));
 });
+//GET all
 app.get("/orders/", function (req, result) {
     orderCollection.find({ date: { $lt: Date.now() } }, function (err, res) {
         res.toArray(function (err2, res2) {
@@ -57,6 +60,13 @@ app.get("/orders/", function (req, result) {
             return result.send(res2);
         });
     });
+});
+//GET 1
+app.get("/orders/:id", function (req, result) {
+    console.log("testing get by refnum");
+    orderCollection
+        .find({ refNumber: parseInt(req.params.id) })
+        .toArray(function (err, res) { return result.send(res); });
 });
 var index = 0;
 var setupDb = function () {
