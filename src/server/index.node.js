@@ -52,7 +52,10 @@ app.listen(port, function () {
 });
 app.get("/orders/", function (req, result) {
     orderCollection.find({ date: { $lt: Date.now() } }, function (err, res) {
-        res.toArray(function (err2, res2) { return result.send(res2); });
+        res.toArray(function (err2, res2) {
+            console.log(res2);
+            return result.send(res2);
+        });
     });
 });
 var index = 0;
