@@ -19,7 +19,7 @@ const NewOrders = () => {
   }, []);
 
   const markDone = async (refNumber: number) => {
-    console.log(refNumber)
+    console.log(refNumber);
     const res = await fetch(`http://localhost:4000/orders/${refNumber}`, {
       method: "PUT",
     });
@@ -33,8 +33,6 @@ const NewOrders = () => {
 
       <div className={AppCss.container}>
         {orders?.map((item: any) => {
-        
-
           return (
             <OrderCard
               item={item}

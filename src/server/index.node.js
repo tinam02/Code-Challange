@@ -61,6 +61,20 @@ app.get("/orders/", function (req, result) {
         });
     });
 });
+//GET finished orders
+app.get("/orders/done", function (req, result) {
+    console.log("finsihed orders");
+    orderCollection
+        .find({
+        done: {
+            $eq: true
+        }
+    })
+        .toArray(function (err, res) {
+        console.log(res);
+        return result.send(res);
+    });
+});
 //GET 1
 app.get("/orders/:id", function (req, result) {
     console.log("testing get by refnum");

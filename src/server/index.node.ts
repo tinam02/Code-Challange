@@ -31,6 +31,21 @@ app.get("/orders/", (req: any, result: any) => {
   });
 });
 
+//GET finished orders
+app.get("/orders/done", (req: any, result: any) => {
+  console.log("finsihed orders");
+  orderCollection
+    .find({
+      done: {
+        $eq: true,
+      },
+    })
+    .toArray((err: any, res: any) => {
+      console.log(res);
+      return result.send(res);
+    });
+});
+
 //GET 1
 app.get("/orders/:id", (req: any, result: any) => {
   console.log("testing get by refnum");
