@@ -1,14 +1,14 @@
-export interface IOption {
-  id: number;
-  name: string;
-  price: number;
-}
+// export interface IOption {
+//   id: number;
+//   name: string;
+//   price: number;
+// }
 
 export interface ICard {
   id: number;
   name: string;
   price: number;
-  options: IOption[];
+  options: ICard[];
 }
 
 export interface IOrder {

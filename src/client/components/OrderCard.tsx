@@ -1,4 +1,3 @@
-import React from "react";
 import { AppCss } from "../App.css";
 import { ICard, IOrder } from "../types";
 
@@ -18,7 +17,7 @@ const OrderCard = ({
       });
     });
     console.log(`${item.refNumber} total: ${total}`);
-    return total;
+    return total.toFixed(2);
   };
 
   return (

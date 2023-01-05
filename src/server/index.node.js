@@ -68,6 +68,11 @@ app.get("/orders/:id", function (req, result) {
         .find({ refNumber: parseInt(req.params.id) })
         .toArray(function (err, res) { return result.send(res); });
 });
+//POST
+app.put("/orders/:id", function (req, result) {
+    console.log("asfdsf");
+    orderCollection.findAndModify({ refNumber: parseInt(req.params.id) }, null, { $set: { done: true } }, function (err, res) { return result.send(res); });
+});
 var index = 0;
 var setupDb = function () {
     // Create Mock Data

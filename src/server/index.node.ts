@@ -39,6 +39,17 @@ app.get("/orders/:id", (req: any, result: any) => {
     .toArray((err: any, res: any) => result.send(res));
 });
 
+//POST
+app.put("/orders/:id", (req: any, result: any) => {
+  console.log("asfdsf");
+  orderCollection.findAndModify(
+    { refNumber: parseInt(req.params.id) },
+    null,
+    { $set: { done: true } },
+    (err: any, res: any) => result.send(res)
+  );
+});
+
 let index = 0;
 const setupDb = () => {
   // Create Mock Data
