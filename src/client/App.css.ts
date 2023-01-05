@@ -2,7 +2,6 @@ import { style, globalStyle } from "@vanilla-extract/css";
 
 export namespace AppCss {
   export const container = style({
-    fontSize: 20,
     display: "grid",
     gridTemplateColumns: "repeat(3, 1fr)",
     gridGap: 10,
@@ -21,6 +20,10 @@ export namespace AppCss {
     borderRadius: 5,
     border: "none",
     cursor: "pointer",
+  });
+  export const secondaryText = style({
+    color: "#999",
+    fontSize: 14,
   });
 }
 
