@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import fetch from "cross-fetch";
 import { AppCss } from "../App.css";
+import { IOrder } from "../types";
+import OrderCard from "./OrderCard";
 
 const NewOrders = () => {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<IOrder[]>([]);
 
   useEffect(() => {
     const getApi = async () => {
@@ -19,7 +21,7 @@ const NewOrders = () => {
   const markDone = async (refNumber: number) => {
     console.log(refNumber);
   };
-  
+
   return (
     <>
       <h1>Pending orders</h1>
@@ -29,33 +31,10 @@ const NewOrders = () => {
           console.log(item);
 
           return (
-            <div key={`order${item._id}`} className={AppCss.card}>
-              <h4>Order {item.refNumber}</h4>
-              {item.card?.map((food: any, i: any) => {
-                return (
-                  <div key={`card-${item.refNumber}-${food.name}-${i}`}>
-                    {food.name} ${food.price}
-                    {food.options?.map((option: any, j: any) => {
-                      return (
-                        <div
-                          key={`option-${item.refNumber}-${option.name}-${j}`}
-                          className={AppCss.secondaryText}
-                        >
-                          - {option.name} ${option.price}
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })}
-
-              <button
-                className={AppCss.btn}
-                onClick={() => markDone(item.refNumber)}
-              >
-                Mark as done
-              </button>
-            </div>
+            <OrderCard
+              item={item}
+              handleClick={(refNumber: number) => markDone(refNumber)}
+            />
           );
         })}
       </div>

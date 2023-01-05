@@ -1,3 +1,4 @@
+import { IOrder } from "../client/types";
 import { createExampleOrder, randomIntFromInterval } from "./mockData";
 
 const express = require("express");
@@ -23,7 +24,7 @@ app.listen(port, () => {
 //GET all
 app.get("/orders/", (req: any, result: any) => {
   orderCollection.find({ date: { $lt: Date.now() } }, (err: any, res: any) => {
-    res.toArray((err2: any, res2: any) => {
+    res.toArray((err2: any, res2: IOrder[]) => {
       console.log(res2);
       return result.send(res2);
     });
