@@ -12,6 +12,7 @@ export interface ICard {
 }
 
 export interface IOrder {
+  _id: number;
   refNumber: number;
   date: number;
   card: ICard[];

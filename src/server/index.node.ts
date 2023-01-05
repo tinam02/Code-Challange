@@ -46,7 +46,8 @@ app.get("/orders/done", (req: any, result: any) => {
     });
 });
 
-//GET 1
+// !!
+//GET 1 
 app.get("/orders/:id", (req: any, result: any) => {
   console.log("testing get by refnum");
   orderCollection
